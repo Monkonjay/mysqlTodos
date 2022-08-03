@@ -9,13 +9,15 @@ const isEven = function(number) {
             reject('isOdd');
         }
     });
-}
+};
 
 // /api/todos
 router.get('/', async (req, res) => {
+    // run codes in try block, if it fails skip to catch block and run the code
     try {
-        const result = await isEven(4);
-        res.json(result);
+        const getAllTodos = 'SELECT * FROM todos'
+        const [ todos ] = await connection.query(getAllTodos);
+        res.json(todos);
 
     } catch (e) {
         console.log(e);
@@ -31,12 +33,15 @@ router.post('/', async (req, res) => {
 
    }
    const insertTodoQuery = 'INSERT INTO todos (todo) VALUES(?);';
+   const getTodoById = 'SELECT * FROM todos WHERE id = ? LIMIT 1;';
 
    try {
-    const dbResult = await connection.query(insertTodoQuery, [todo]);
+    const [ queryResult ] = await connection.query(insertTodoQuery, [todo]);
+    const [ todos ] = await connection.query(getTodoById, [queryResult.insertId]);
+    res.json(todos[0]);
    }
    catch(error) {
-    res.status(500).json(error)
+    res.status(500).json(error);
 
    }
 });

@@ -7,4 +7,5 @@
             ('print money', false),
             ('Install blinds', true),
             ('Take vacation', false);
+            ('Complete HW5', false);
 
