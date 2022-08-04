@@ -6,6 +6,6 @@
             ('Fold laundry', true),
             ('print money', false),
             ('Install blinds', true),
-            ('Take vacation', false);
+            ('Take vacation', false),
             ('Complete HW5', false);
 
