@@ -1,8 +1,9 @@
 require('dotenv').config();
-
 const mysql = require('mysql2');
 
+
 let connection;
+
 
 if (process.env.JAWSDB_URL) {
     connection = mysql.createConnection({
@@ -11,7 +12,6 @@ if (process.env.JAWSDB_URL) {
         password: process.env.DB_PASSWORD,
         database: process.env.DB_NAME,
     }).promise();
-
 }else {
     connection = mysql.createConnection({
     host: 'localhost',
@@ -20,5 +20,6 @@ if (process.env.JAWSDB_URL) {
     database: 'todos_db',
 }).promise();
 }
+
 
 module.exports = connection;
